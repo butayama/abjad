@@ -1,5 +1,5 @@
-LilyPond context concatenation
-==============================
+LilyPond: context concatenation
+===============================
 
 Probably the most important LilyPond pattern Abjad users should know is this: **LilyPond
 lets you use a control file to glue together separate LilyPond files that segment your

@@ -1,7 +1,14 @@
 Changes (3.2)
 =============
 
-Changes to Abjad since the 3.1 release (2019-12-18).
+Changes from Abjad 3.1 (2019-12-18) to Abjad 3.2 (2020-12-12).
+
+----
+
+**DOCS.**
+
+Activated Sphinx's ``sphinx.ext.viewcode`` extension in the docs.
+As suggested by `jgarte <https://github.com/jgarte>`_.
 
 ----
 
@@ -245,6 +252,91 @@ Removed ``abjad.TestManager``:
     OLD: abjad.TestManager.compare_files()
     NEW: abjad.IOManager.compare_files()
 
+Refactored ``abjad.StaffChange`` to take staff name instead of staff object.
+
+::
+
+    OLD:
+
+        staff = abjad.Staff(name="RH_Staff")
+        staff_change = abjad.StaffChange(staff)
+
+    NEW:
+
+        staff_change = abjad.StaffChange("RH_Staff")
+
+----
+
+**DEPRECATED.**
+
+Use of ``abjad.f()`` is now deprecated. Begin migrating code to use these instead. This
+shows unambiguously which way an object is being formatted:
+
+::
+
+    Added abjad.lilypond()
+    Added abjad.storage()
+
+CHANGED: Replaced format() with abjad.lilypond(), abjad.storage().
+
+OLD:
+
+    * format(item, "lilypond")
+    * format(item, "storage")
+
+NEW:
+
+    * abjad.lilypond(item)
+    * abjad.storage(item)
+
+----
+
+**NEW.**
+
+ZEB
+
+CHANGED abjad.mathtools to abjad.matx:
+
+OLD: abjad.mathtools.sign(number)
+NEW: abjad.matx.sign(number)
+CHANGED. Moved transposition functions.
+
+OLD:
+
+    abjad.Instrument.transpose_from_sounding_pitch()
+    abjad.Instrument.transpose_from_written_pitch()
+
+NEW:
+
+    abjad.iterpitches.transpose_from_sounding_pitch()
+    abjad.iterpitches.transpose_from_written_pitch()
+CHANGED. abjad.Clef.from_selection() to abjad.Clef.from_pitches().
+
+OLD:
+
+    >>> leaves = abjad.select(staff).leaves()
+    >>> abjad.Clef.from_selection(leaves)
+
+NEW:
+
+    >>> pitches = abjad.iterate(staff).pitches()
+    >>> abjad.Clef.from_pitches(pitches)
+PACKAGE CLEANUP:
+
+* Added stringx.py module
+* Added typedcollections.py module
+* Moved yield_all_modules() to configuration.py module
+* Added cyclictuple.py module
+* Added sequence.py module
+* Added expression.py module
+* Added score.py module
+* Added segmentmaker.py module
+* Alphabetized Abjad initializer
+* Added path.py module
+Fixed multipart tuplet split bug. Closes #1201.
+
+
+
 ----
 
 **FIXES.**
@@ -281,3 +373,9 @@ fusing leaves. (`Tsz Kiu Pang <https://nivlekp.github.io/>`_).
 
 * Replaced ``ly/`` with ``lyconst.py``, ``lyenv.py``, ``lyproxy.py`` modules.
 
+Package cleanup:
+
+* Moved inspectx.py, update.py, wellformedness.py to top level
+* Changed OnBeatGraceContainer.py to obgc.py
+* Changed select.py to selectx.py
+* Added attach.py module

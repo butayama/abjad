@@ -1,5 +1,4 @@
 import os
-
 import abjad
 
 configuration = abjad.Configuration()

@@ -43,7 +43,7 @@ And you can show the note like this:
 
 ::
 
-    >>> abjad.show(note)
+    >>> show(note)
 
 Stopping the interpreter
 ------------------------

@@ -20,7 +20,7 @@ Type the following lines of code into ``hello_world.py``:
 ::
 
     note = Note("c'4")
-    abjad.show(note)
+    show(note)
 
 Save ``hello_world.py`` and quit your text editor.
 
